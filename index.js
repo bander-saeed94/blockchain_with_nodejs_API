@@ -10,7 +10,7 @@ app.get('/blocks/:blockHeight', (req, res, next) => {
     let blockHeight = req.params.blockHeight
     blockchain.getBlock(blockHeight, (err, block) => {
         if (err) {
-            next(new Error(err))
+            next(new Error('block not found'))
         }
         else {
             res.send({ block: block })
@@ -27,7 +27,7 @@ app.post('/blocks', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-    res.json({ error: err })
+    res.json({ error: err.message })
 })
 app.listen(8000, () => {
     console.log('listening on port 8000')
