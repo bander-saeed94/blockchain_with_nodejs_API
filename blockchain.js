@@ -44,7 +44,7 @@ class Blockchain {
             // newBlock.previousBlockHash = ''
             newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
             let block = await blockchain.putBlockSync(newBlock, newBlock.height);
-            return 'Genesis Block Added:' + JSON.stringify(newBlock);
+            return newBlock;
         }
         else {
             let blockHeight = await blockchain.getBlockHeightSync();
@@ -53,7 +53,7 @@ class Blockchain {
             newBlock.time = new Date().getTime().toString().slice(0, -3);
             newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
             let block = await blockchain.putBlockSync(newBlock, newBlock.height);
-            return 'Block Added:' + JSON.stringify(newBlock);
+            return newBlock;
         }
     }
     //get block by height
