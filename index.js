@@ -1,20 +1,34 @@
 const express = require('express');
 const app = express();
-
+const Blockchain = require('./blockchain').Blockchain;
+const Block = require('./blockchain').Block;
+const blockchain = new Blockchain();
 
 app.use(express.json())
 
-app.get('/blocks/:blockHeight',(req,res,next)=>{
-    let blockHieght = req.params.blockHeight
-    res.json({block:`you requested block ${blockHieght}`})
+app.get('/blocks/:blockHeight', (req, res, next) => {
+    let blockHeight = req.params.blockHeight
+    blockchain.getBlock(blockHeight, (err, block) => {
+        if (err) {
+            next(new Error(err))
+        }
+        else {
+            res.send({ block: block })
+        }
+    })
 })
 
-app.post('/blocks', (req,res,next)=>{
+app.post('/blocks', (req, res, next) => {
     let body = req.body;
-    res.json({body,saved : true})
+    let block = new Block(body.data)
+    blockchain.addBlock(block).then((block) => {
+        res.send({block: block})
+    }).catch(next)
 })
 
-app.listen(8000,()=>{
+app.use((err, req, res, next) => {
+    res.json({ error: err })
+})
+app.listen(8000, () => {
     console.log('listening on port 8000')
 })
-

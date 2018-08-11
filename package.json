@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/bander-saeed94/blockchain_with_nodejs_API#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.16.3",
+    "level": "^4.0.0"
   }
 }
