@@ -139,7 +139,14 @@ class Blockchain {
         let blockHash = block.hash;
         block.hash = ''
         let validBlockHash = SHA256(JSON.stringify(block)).toString();
-        if (blockHash === validBlockHash) {
+        //add more security by checking for previus hash
+        let securityAdded = true;
+        if (block.height != 0) {
+            let previousBlockHash = await this.getPreviousBlockHashSync(block.height);
+            if(block.previousBlockHash !== previousBlockHash )
+                securityAdded = false;
+        } 
+        if (blockHash === validBlockHash && securityAdded) {
             return true;
         } else {
             console.log('\nBlock #' + blockHeight + ' invalid hash:')

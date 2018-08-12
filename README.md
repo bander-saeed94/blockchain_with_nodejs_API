@@ -1,3 +1,3 @@
 
-[![HitCount](http://hits.dwyl.io/bander-saeed/private-blockchain.svg)](http://hits.dwyl.io/bander-saeed/private-blockchain)
+[![HitCount](http://hits.dwyl.io/bander-saeed/blockchain_with_nodejs_API.svg)](http://hits.dwyl.io/bander-saeed/blockchain_with_nodejs_API)
 
