@@ -6,7 +6,7 @@ const blockchain = new Blockchain();
 
 app.use(express.json())
 
-app.get('/blocks/:blockHeight', (req, res, next) => {
+app.get('/block/:blockHeight', (req, res, next) => {
     let blockHeight = req.params.blockHeight
     blockchain.getBlock(blockHeight, (err, block) => {
         if (err) {
@@ -18,7 +18,7 @@ app.get('/blocks/:blockHeight', (req, res, next) => {
     })
 })
 
-app.post('/blocks', (req, res, next) => {
+app.post('/block', (req, res, next) => {
     let body = req.body;
     let block = new Block(body.data)
     blockchain.addBlock(block).then((block) => {
