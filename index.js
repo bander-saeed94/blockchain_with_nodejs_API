@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const Blockchain = require('./blockchain').Blockchain;
-const Block = require('./blockchain').Block;
+const Blockchain = require('./blockchain');
+const Block = require('./block');
 const blockchain = new Blockchain();
 
 app.use(express.json())

@@ -6,16 +6,7 @@ const SHA256 = require('crypto-js/sha256')
 const level = require('level')
 const chainDB = './chainData'
 const db = level(chainDB, { valueEncoding: 'json' });
-// Block Class
-class Block {
-    constructor(data) {
-        this.hash = ''
-        this.height = 0
-        this.body = data
-        this.time = 0
-        this.previousBlockHash = ''
-    }
-}
+const Block = require('./block');
 // Blockchain Class
 class Blockchain {
     constructor() {
@@ -191,7 +182,4 @@ class Blockchain {
     }
 }
 
-module.exports ={
-    Blockchain: Blockchain,
-    Block: Block
-};
+module.exports = Blockchain
